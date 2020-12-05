@@ -50,13 +50,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                 <img alt="" src="{{asset('public/backend/images/2.png')}}">
-                <span class="username">John Doe</span>
+                <span class="username">
+					<?php $admin_name = Session::get('admin_name'); 
+						echo $admin_name;
+					?>
+				</span>
                 <b class="caret"></b>
             </a>
             <ul class="dropdown-menu extended logout">
                 <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
                 <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
-                <li><a href="login.html"><i class="fa fa-key"></i> Log Out</a></li>
+                <li><a href="{{URL('/logout')}}"><i class="fa fa-key"></i> Log Out</a></li>
             </ul>
         </li>
         <!-- user login dropdown end -->
@@ -82,11 +86,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>
+                        <span>Loại sản phẩm</span>
+                    </a>
+                    <ul class="sub">
+						<li><a href="{{route('category.index')}}">Danh sách loại sản phẩm</a></li>
+						<li><a href="{{route('category.create')}}">Thêm loại sản phẩm</a></li>
+                    </ul>
+				</li>
+				
+				<li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
                         <span>Sản phẩm</span>
                     </a>
                     <ul class="sub">
-						<li><a href="typography.html">Danh sách sản phẩm</a></li>
-						<li><a href="glyphicon.html">Thêm sản phẩm</a></li>
+						<li><a href="{{route('product.index')}}">Danh sách sản phẩm</a></li>
+						<li><a href="{{route('product.create')}}">Thêm sản phẩm</a></li>
                     </ul>
                 </li>
             </ul>            
@@ -97,7 +112,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--sidebar end-->
 <section id="main-content">
 	<section class="wrapper">
-        <h1>Chào mừng bạn đến với trang Admin</h1>
+        @yield('admin_content')
 	</section>
 </section>
 <script src="{{asset('public/backend/js/bootstrap.js')}}"></script>
