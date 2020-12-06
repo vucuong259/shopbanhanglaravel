@@ -24,6 +24,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="log-w3">
 <div class="w3layouts-main">
 	<h2>Sign In Now</h2>
+	<?php 
+		$message = Session::get('message');
+		if($message){ 
+	?>
+		<div class="alert alert-danger" style="text-align: center" role="alert">
+			<?= $message; ?>
+		</div>
+	<?php
+			Session::put('message',null);
+		}
+	?>
 		<form action="{{URL('/admin-dashboard')}}" method="post">
 			@csrf
 			<input type="text" class="ggg" name="admin_email" placeholder="E-MAIL" required="">

@@ -6,9 +6,17 @@
             <header class="panel-heading">
                 Thêm loại sản phẩm
             </header>
-            @if (!$msg)
-                <?= $msg; ?>
-            @endif
+            <?php 
+                $message = Session::get('message');
+                if($message){ 
+            ?>
+                <div class="alert alert-success" role="alert">
+                    <?= $message; ?>
+                </div>
+            <?php
+                    Session::put('message',null);
+                }
+            ?>
             <div class="panel-body">
                 <div class="position-center">
                 <form role="form" action="{{route('category.store')}}" method="POST">

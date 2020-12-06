@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use Session;
 
 class CategoryController extends Controller
 {
@@ -15,7 +16,9 @@ class CategoryController extends Controller
     public function index()
     {
         //
-        return view('admin.category.listcategory');
+        $categories = Category::paginate(2);
+        
+        return view('admin.category.listcategory', compact('categories'));
     }
 
     /**
@@ -43,7 +46,8 @@ class CategoryController extends Controller
         $Category->category_desc = $request->category_desc;
         $Category->category_status = $request->category_status;
         $Category->save();
-        return redirect()->route('admin.category.create')->with('msg','Thêm loại sản phẩm thành công');
+        Session::put('message','Thêm loại danh mục sản phẩm thành công');
+        return redirect()->route('category.create');
     }
 
     /**
